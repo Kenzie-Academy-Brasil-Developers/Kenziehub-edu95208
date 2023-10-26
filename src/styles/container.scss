@@ -1,0 +1,14 @@
+.container{
+   
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 8.8rem 0rem 5.31rem 0rem;
+
+    &.sm{
+        max-width: 470px;
+    }
+}
