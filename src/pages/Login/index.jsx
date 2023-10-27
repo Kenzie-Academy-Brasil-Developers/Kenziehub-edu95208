@@ -8,7 +8,7 @@ export const Login = () => {
         <main className={pageStyles.pageBox}>
             <div className="container sm">
                 <img src={Logo} alt="Logo Kenzie hub" />
-                <div className="">
+                <div >
                     <FormLogin />
                 </div>
             </div>

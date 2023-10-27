@@ -2,7 +2,10 @@ import { useForm } from "react-hook-form";
 import { Input } from "../input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerFormSchema } from "./registerForm.schema";
-import {api} from "../../services/api"
+import { api } from "../../services/api"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import style from "./style.module.scss"
 
 
 
@@ -11,23 +14,39 @@ export const FormCadst = () => {
         resolver: zodResolver(registerFormSchema),
     });
 
+    const navigate = useNavigate();
+     
+    const [loading, setLoading] = useState(false);
+    const [toDolist, setDoList] = useState("");
     const userRegister = async (pay) => {
         console.log(pay)
-        try{ 
-         await api.post("/users", pay);
-         alert("ok")
-        }catch (error){
+
+        try {
+            setLoading(true)
+           const {data}= await api.post("/users", pay);
+           console.log(data);
+            navigate("/");
+
+        } catch (error) {
             console.log(error);
-        };
-       
+            if (error.response?.data === "") {
+                alert("error")
+            }
+        } finally {
+            setLoading(false)
+        }
+
     };
-    
-    const submit =  (pay) => {
-        userRegister(pay);
+
+    const submit = (pay) => {
+       /* console.log(pay)*/
+       userRegister(pay);
     };
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
+        <form className={style.formCardt} onSubmit={handleSubmit(submit)}>
+            <h2>Crie sua conta</h2>
+            <p>Rapido e grátis, vamos nessa</p>
 
             <Input
                 label="Nome"
@@ -59,10 +78,19 @@ export const FormCadst = () => {
             <Input
                 label="Confirma Senha"
                 type="password"
-                id="senha"
+                id="senhaPassoword"
                 placeholder="Digite novamente sua senha"
                 {...register("confirmpassword")}
                 error={errors.confirmpassword}
+            />
+
+            <Input
+                label="Contato"
+                type="text"
+                id="contact"
+                placeholder="Opção de contato"
+                error={errors.contact}
+                {...register("contact")}
             />
 
 
@@ -71,13 +99,13 @@ export const FormCadst = () => {
                 type="text"
                 id="name"
                 placeholder="Fale sobre você"
-                error={errors.text}
-                {...register("text")}
+                error={errors.bio}
+                {...register("bio")}
             />
 
             <div>
                 <p>Selecionar módulo</p>
-                <select id="title" type="text" error={errors.status} {...register("status")}>
+                <select id="title" type="text" error={errors.course_module} {...register("course_module")}>
                     <option id="title" type="text" value="Basíco">Primeiro módulo</option>
                     <option id="title" type="text" value="intermediário">Segundo módulo</option>
                     <option id="title" type="text" value="Avançado"  >Terceiro módulo</option>
@@ -85,7 +113,7 @@ export const FormCadst = () => {
                 </select>
             </div>
             <div>
-                <button type="submit">Cadastrar</button>
+                <button type="submit" disabled={loading} >Cadastrar</button>
             </div>
 
         </form>

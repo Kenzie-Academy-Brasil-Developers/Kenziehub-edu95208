@@ -20,14 +20,16 @@ const registerFormSchema = z.object(
         confirmpassword: z
             .string()
             .min(8, "Confirme sua senha."),
-        text:z
+        contact: z
+            .string(),
+        bio:z
         .string()
         .min(1, "Campo Obrigatório."),
-        status: z
+        course_module: z
         .string()
         .min(1, "Campo Obrigatório."),
 
-
+    
     }
 ).refine(({password, confirmpassword}) => password ===confirmpassword, {
     message: "As senhas não corresponde.",
