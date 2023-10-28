@@ -48,11 +48,11 @@ export const FormCadst = () => {
         <form className={style.formCardt} onSubmit={handleSubmit(submit)}>
 
             <div className={style.info}>
-                <h2>Crie sua conta</h2>
-                <p>Rapido e grátis, vamos nessa</p>
+                <h2 className="title1">Crie sua conta</h2>
+                <p className="Headline">Rapido e grátis, vamos nessa</p>
             </div>
 
-            <Input
+            <Input 
                 label="Nome"
                 type="text"
                 id="name"

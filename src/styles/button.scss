@@ -14,18 +14,71 @@
     color: var(--color);
 
     font-family: var(--font-primary);
-    font-size: var(--paraghaph) ;
+    font-size: var(--paraghaph);
     font-style: normal;
     font-weight: var(--Title--Weight3);
     line-height: 26.394px;
 }
 
-.link{
-    
+.buttonEnt {
+    background-color: var(--color-primary);
+    color: var(--Grey-0);
+    display: flex;
+    width: 324px;
+    height: 48px;
+    padding: 0px 22.334px;
+    justify-content: center;
+    align-items: center;
+    gap: 10.152px;
+    border-radius: 5px;
+}
+
+.link {
+
     color: var(--color);
     background-color: var(--Grey-3);
     text-decoration: none;
-    &:hover{
+    padding: 0px 16.243px;
+    height: 40.11px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+    font-family: var(--font-primary);
+    font-size: var(--headline);
+    font-style: normal;
+    font-weight: var(--Title-Weight2);
+    line-height: 28.425px;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.linkCad {
+
+    color: var(--color);
+    background-color: var(--Grey-1);
+    text-decoration: none;
+
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 324px;
+    height: 48px;
+    padding: 0px 22.334px;
+
+
+    font-family: var(--font-primary);
+    font-size: var(--headline);
+    font-style: normal;
+    font-weight: var(--Title-Weight2);
+    line-height: 28.425px;
+
+    &:hover {
         text-decoration: none;
     }
 }

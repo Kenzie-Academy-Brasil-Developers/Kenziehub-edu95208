@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormSchema } from "./LoginForm.schema";
 import { api } from "../../services/api";
 import { useState } from "react";
+import style from "./styles.module.scss";
 
 
 
@@ -43,8 +44,8 @@ export const FormLogin = ({ setUser }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit(submit)}>
-            <h2>Login</h2>
+        <form className={style.formLogin} onSubmit={handleSubmit(submit)}>
+            <h2 className="title1">Login</h2>
             <Input
                 label="Email"
                 type="text"
@@ -63,10 +64,10 @@ export const FormLogin = ({ setUser }) => {
                 {...register("password")}
             />
 
-
-            <div>
-                <button type="submit" disabled={loading}>Entrar</button>
-                <Link to="/Register">Cadastre-se</Link>
+             <p className="Headline">Ainda não possui uma conta?</p>
+            <div className={style.divBt}>
+                <button className="buttonEnt"type="submit" disabled={loading}>Entrar</button>
+                <Link className="linkCad" to="/Register">Cadastre-se</Link>
             </div>
         </form>
     );
