@@ -15,22 +15,23 @@ export const FormCadst = () => {
     });
 
     const navigate = useNavigate();
-     
+
     const [loading, setLoading] = useState(false);
-    const [toDolist, setDoList] = useState("");
+
     const userRegister = async (pay) => {
-        console.log(pay)
+
 
         try {
             setLoading(true)
-           const {data}= await api.post("/users", pay);
-           console.log(data);
+            await api.post("/users", pay);
             navigate("/");
+            alert("Cadastro realizado com sucesso")
+
 
         } catch (error) {
-            console.log(error);
-            if (error.response?.data === "") {
-                alert("error")
+
+            if (error.response?.data.message === "Email already exists") {
+                alert("Usuario já cadastrado");
             }
         } finally {
             setLoading(false)
@@ -39,14 +40,17 @@ export const FormCadst = () => {
     };
 
     const submit = (pay) => {
-       /* console.log(pay)*/
-       userRegister(pay);
+
+        userRegister(pay);s
     };
 
     return (
         <form className={style.formCardt} onSubmit={handleSubmit(submit)}>
-            <h2>Crie sua conta</h2>
-            <p>Rapido e grátis, vamos nessa</p>
+
+            <div className={style.info}>
+                <h2>Crie sua conta</h2>
+                <p>Rapido e grátis, vamos nessa</p>
+            </div>
 
             <Input
                 label="Nome"
@@ -103,9 +107,9 @@ export const FormCadst = () => {
                 {...register("bio")}
             />
 
-            <div>
+            <div className={style.option}>
                 <p>Selecionar módulo</p>
-                <select id="title" type="text" error={errors.course_module} {...register("course_module")}>
+                <select className={style.op} id="title" type="text" error={errors.course_module} {...register("course_module")}>
                     <option id="title" type="text" value="Basíco">Primeiro módulo</option>
                     <option id="title" type="text" value="intermediário">Segundo módulo</option>
                     <option id="title" type="text" value="Avançado"  >Terceiro módulo</option>
@@ -113,7 +117,7 @@ export const FormCadst = () => {
                 </select>
             </div>
             <div>
-                <button type="submit" disabled={loading} >Cadastrar</button>
+                <button className="buttonCdt" type="submit" disabled={loading} >Cadastrar</button>
             </div>
 
         </form>

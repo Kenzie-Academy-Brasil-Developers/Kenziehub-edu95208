@@ -22,18 +22,18 @@ const registerFormSchema = z.object(
             .min(8, "Confirme sua senha."),
         contact: z
             .string(),
-        bio:z
-        .string()
-        .min(1, "Campo Obrigatório."),
+        bio: z
+            .string()
+            .min(1, "Campo Obrigatório."),
         course_module: z
-        .string()
-        .min(1, "Campo Obrigatório."),
+            .string()
+            .min(1, "Campo Obrigatório."),
 
-    
+
     }
-).refine(({password, confirmpassword}) => password ===confirmpassword, {
+).refine(({ password, confirmpassword }) => password === confirmpassword, {
     message: "As senhas não corresponde.",
-    path:["confirmpassword"]
-} );
+    path: ["confirmpassword"]
+});
 
-export {registerFormSchema};
+export { registerFormSchema };

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const LoginFormSchema= z.object(
+const LoginFormSchema = z.object(
     {
         email: z
             .string()

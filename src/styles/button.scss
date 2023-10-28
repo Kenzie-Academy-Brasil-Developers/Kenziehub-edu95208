@@ -1,0 +1,31 @@
+.buttonCdt {
+    display: flex;
+    width: 21rem;
+    height: 3rem;
+    padding: 0px 22.334px;
+    justify-content: center;
+    align-items: center;
+    gap: 10.152px;
+
+    border-radius: 4px;
+    border: 1.218px solid var(--color-primary-negative);
+    background: var(--color-primary-negative);
+
+    color: var(--color);
+
+    font-family: var(--font-primary);
+    font-size: var(--paraghaph) ;
+    font-style: normal;
+    font-weight: var(--Title--Weight3);
+    line-height: 26.394px;
+}
+
+.link{
+    
+    color: var(--color);
+    background-color: var(--Grey-3);
+    text-decoration: none;
+    &:hover{
+        text-decoration: none;
+    }
+}

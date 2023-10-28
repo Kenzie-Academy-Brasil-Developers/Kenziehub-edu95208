@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 
-export const FormLogin = () => {
+export const FormLogin = ({ setUser }) => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(LoginFormSchema),
     });
@@ -16,26 +16,30 @@ export const FormLogin = () => {
 
     const [loading, setLoading] = useState(false);
 
-    /*const navigate = useNavigate();*/
+    const navigate = useNavigate();
 
     const userLogin = async (payLogin) => {
-   console.log(payLogin)
-    try{
-        setLoading(true);
-       const {data}= await api.post("sessions", payLogin);
-       console.log(data);
-    }catch (error){
-        console.log(error);
+        console.log(payLogin)
+        try {
+            setLoading(true);
+            const { data } = await api.post("sessions", payLogin);
+            localStorage.setItem("@TOKEN", data.token);
+            setUser(data.user);
+            console.log(data);
+            navigate("/Dashboard");
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+            if (error.response?.data.message === "Incorrect email / password combination")
+                alert("Email ou senha incorreta ")
 
-        if(error.response?.data === ""){
-            alert("Invalida");
-        }
-    }finally {
-        setLoading(false);
+        } finally {
+            setLoading(false);
+        };
     };
-    };
-    const submit = (payLogin) => { console.log("cheguei")
-       userLogin(payLogin);
+    const submit = (payLogin) => {
+
+        userLogin(payLogin);
     };
 
     return (
