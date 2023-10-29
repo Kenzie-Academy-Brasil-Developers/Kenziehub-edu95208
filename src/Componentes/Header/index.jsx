@@ -1,17 +1,18 @@
 
 import Logo from "../../assets/Logo.svg";
+import style from "./style.module.scss"
 export const Header = ({ user, userLogout }) => {
     return (
-        <header>
-            <div>
+        <header >
+            <div className={style.header}>
 
-                <div>
+                <div className={style.headerLogo}>
                     <img src={Logo} alt="Logo Kenzie hub" />
-                    <button onClick={() => userLogout()}>Sair</button>
+                    <button className="sair" onClick={() => userLogout()}>Sair</button>
                 </div>
-                <div>
-                    <p>Olá {user?.name}</p>
-                    <p>{user?.course_module}</p>
+                <div className={style.headerinfo}>
+                    <h1 className="title1">Olá {user?.name}</h1>
+                    <p className="Headline">{user?.course_module}</p>
                 </div>
 
             </div>

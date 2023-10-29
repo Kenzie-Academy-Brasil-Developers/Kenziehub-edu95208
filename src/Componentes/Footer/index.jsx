@@ -1,7 +1,8 @@
+import styles from "./style.module.scss"
 export const Footer = () => {
   return (
-    <footer>
-      <p>&copy; Todos os direitos reservados - Eduardo Aguiar</p>
+    <footer className={styles.footer}>
+      <p className="Headline">&copy; Todos os direitos reservados</p>
     </footer>
   );
 };
