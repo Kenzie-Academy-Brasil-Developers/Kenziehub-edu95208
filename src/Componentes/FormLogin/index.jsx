@@ -20,17 +20,17 @@ export const FormLogin = ({ setUser }) => {
     const navigate = useNavigate();
 
     const userLogin = async (payLogin) => {
-        console.log(payLogin)
+     
         try {
             setLoading(true);
             const { data } = await api.post("sessions", payLogin);
             localStorage.setItem("@TOKEN", data.token);
             setUser(data.user);
-            console.log(data);
+         
             navigate("/Dashboard");
-            console.log(data);
+            
         } catch (error) {
-            console.log(error);
+          
             if (error.response?.data.message === "Incorrect email / password combination")
                 alert("Email ou senha incorreta ")
 
