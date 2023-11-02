@@ -1,7 +1,9 @@
-
 import Logo from "../../assets/Logo.svg";
+import { useContextIm } from "../../hooks/useContext";
 import style from "./style.module.scss"
-export const Header = ({ user, userLogout }) => {
+export const Header = () => {
+
+    const {user, userLogout} = useContextIm();
     return (
         <header >
             <div className={style.header}>
