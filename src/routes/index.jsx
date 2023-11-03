@@ -3,9 +3,9 @@ import { Error } from "../pages/ErroPages/Index";
 import { Dashboard } from "../pages/Dashboard";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
-import { PrivateRoutes } from "./PrivateRoutes";
+import { PrivateRoutes } from "./PrivateRoutes/index";
 import { Userpage } from "../pages/userPage/index";
-import { PublicRoutes } from "./plublicRoutes";
+import { PublicRoutes } from "./PlublicRoutes/index";
 
 
 export const RoutesMain = () => {
