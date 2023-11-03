@@ -45,9 +45,9 @@ export const FormLogin = () => {
                 {...register("password")}
             />
 
-            <p className="Headline">Ainda não possui uma conta?</p>
             <div className={style.divBt}>
                 <button className="buttonEnt" type="submit" disabled={loading}>Entrar</button>
+            <p className="Headline">Ainda não possui uma conta?</p>
                 <Link className="linkCad" to="/Register">Cadastre-se</Link>
             </div>
         </form>

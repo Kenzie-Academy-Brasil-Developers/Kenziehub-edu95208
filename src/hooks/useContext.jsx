@@ -3,7 +3,7 @@ import { UserContext } from "../providers/UserContext";
 export function useContextIm() {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error("usePokemon deve ser usado dentro de um PokemonProvider");
+    throw new Error("error");
   }
   return context;
 }

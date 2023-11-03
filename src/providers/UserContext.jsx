@@ -7,31 +7,35 @@ const UserContext = createContext({});
 
 
 const UserProvider = ({ children }) => {
-     
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
-     
+
+    const pathname= window.location.pathname;
+  
+
     useEffect(() => {
         const token = localStorage.getItem("@TOKEN")
-      const getUser = async () => {
 
-        try{
-           setLoading(true);
-            const {data} = await api.get(`profile`, {
-            headers:{
-                Authorization: `Bearer ${token}`
+        const getUser = async () => {
+
+            try {
+                setLoading(true);
+                const { data } = await api.get(`profile`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setUser(data);
+                navigate(pathname);
+            } catch (error) {
+
+            } finally {
+                setLoading(false);
             }
-            });
-            setUser(data);
-            navigate("/Dashboard");
-        } catch (error){
-            
-        }finally {
-            setLoading(false);
-        }
 
-      }
-      getUser();
+        }
+        getUser();
     }, [])
 
     const navigate = useNavigate();
@@ -80,7 +84,7 @@ const UserProvider = ({ children }) => {
 
     };
 
-    return <UserContext.Provider value={{ user, loading,  userLogin, userLogout, userRegister}}>
+    return <UserContext.Provider value={{ user, loading, userLogin, userLogout, userRegister }}>
         {children}
     </UserContext.Provider>
 };

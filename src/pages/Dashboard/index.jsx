@@ -1,5 +1,5 @@
 import { DefautTemplate } from "../../Componentes/DefautTemplate";
-import pageStyles from "../../styles/modules/pagesBox.module.scss";
+
 
 
 export const Dashboard = () => {
