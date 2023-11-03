@@ -4,7 +4,7 @@ import { Dashboard } from "../pages/Dashboard";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { PrivateRoutes } from "./PrivateRoutes";
-import { Userpage } from "../pages/UserPage";
+import { Userpage } from "../pages/userPage/index";
 import { PublicRoutes } from "./plublicRoutes";
 
 
