@@ -5,8 +5,8 @@ export const Header = () => {
 
     const {user, userLogout} = useContextIm();
     return (
-        <header >
-            <div className={style.header}>
+        <header className={style.header} >
+            <div  >
 
                 <div className={style.headerLogo}>
                     <img src={Logo} alt="Logo Kenzie hub" />
