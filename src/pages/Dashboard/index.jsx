@@ -1,4 +1,5 @@
 import { DefautTemplate } from "../../Componentes/DefautTemplate";
+import { TechList } from "../../Componentes/TechList";
 
 
 
@@ -8,8 +9,7 @@ export const Dashboard = () => {
     <DefautTemplate>
       <main  >
         <div className="containerUser smU">
-          <h3 className="title1">Que pena! Estamos em desenvolvimento :(</h3>
-          <p className="Headline">Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+          <TechList/>
         </div>
       </main>
     
