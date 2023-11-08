@@ -2,47 +2,88 @@ import { createContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { useContextIm } from "../hooks/useContext";
 
-export const Techcontext = createContext({})
+export const Techcontext = createContext({});
 
 export const TechProvider = ({ children }) => {
-    const { user } = useContextIm();
-    const [TecList, setTecList] = useState([]);
-    console.log(user)
-    useEffect(() => {
-        const getTech = async () => {
-            try {
-                const { data } = await api.get("users")
-                setTecList(data);
-            } catch (error) {
-             
-            }
-        }
+    const { user, TecList, setTecList } = useContextIm();
 
-        getTech()
-    }, [])
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isModalEdit, setisModalEdit] = useState(false);
+    const [editingTech, setEditingTech] = useState(false);
 
-    const createTech = async () => {
+
+    const createTech = async (newTech) => {
         try {
-            const token = localStorage.get("@TOKEN");
+            const token = localStorage.getItem("@TOKEN");
 
-            const newTech = {
-                title: user.techs.title,
-                status: user.techs.status,
-            }
-        
+
             const { data } = await api.post("users/techs", newTech, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
+
             setTecList([...TecList, data]);
-        }catch (error){
-           
+        } catch (error) {
+
+        }
+    }
+
+
+    const deleteTech = async (deletingId) => {
+        try {
+            const token = localStorage.getItem("@TOKEN")
+
+            await api.delete(`/users/techs/${deletingId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const newTechList = TecList.filter((tech) => tech.id !== deletingId)
+            setTecList(newTechList)
+
+        } catch (error) {
+
+        }
+    }
+
+    const techUpdate = async (formData) => {
+        try {
+            const token = localStorage.getItem("@TOKEN")
+
+            const { data } = await api.put(`/users/techs/${isModalEdit.id}`, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+
+            const editTechList = TecList.map((tech) => {
+                if (tech.id === editingTech.id) {
+                    return data
+                } else {
+                    return tech
+                }
+            })
+            setTecList(editTechList);
+        } catch (error) {
+
         }
     }
 
     return (
-        <Techcontext.Provider value={{ TecList, createTech }}>
+        <Techcontext.Provider
+            value={{
+                editingTech,
+                setEditingTech,
+                techUpdate,
+                isModalEdit,
+                setisModalEdit,
+                deleteTech,
+                isModalVisible,
+                setIsModalVisible,
+                TecList,
+                createTech
+            }}>
             {children}
         </Techcontext.Provider>
     )

@@ -10,6 +10,7 @@ const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [TecList, setTecList] = useState(null);
 
     const pathname= window.location.pathname;
   
@@ -22,11 +23,14 @@ const UserProvider = ({ children }) => {
             try {
                 setLoading(true);
                 const { data } = await api.get(`profile`, {
+                    
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
+                
                 setUser(data);
+                setTecList(data.techs)
                 navigate(pathname);
             } catch (error) {
 
@@ -84,7 +88,7 @@ const UserProvider = ({ children }) => {
 
     };
 
-    return <UserContext.Provider value={{ user, loading, userLogin, userLogout, userRegister }}>
+    return <UserContext.Provider value={{ user, loading, TecList, setTecList, userLogin, userLogout, userRegister }}>
         {children}
     </UserContext.Provider>
 };

@@ -30,6 +30,7 @@ const registerFormSchema = z.object(
             .min(1, "Campo Obrigatório."),
 
 
+
     }
 ).refine(({ password, confirmpassword }) => password === confirmpassword, {
     message: "As senhas não corresponde.",

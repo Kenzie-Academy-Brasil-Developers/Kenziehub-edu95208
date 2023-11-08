@@ -1,24 +1,36 @@
-import { Link } from "react-router-dom";
+import { FaTrashAlt } from "react-icons/fa";
+import { VscEdit } from "react-icons/vsc";
+import style from "./style.module.scss";
+import { useContext } from "react";
+import { Techcontext } from "../../../providers/TechContext";
 
 
 export const TechCard = ({ tech }) => {
+    const { deleteTech, setisModalEdit, setEditingTech } = useContext(Techcontext);
+
     return (
-        <li>
-            <div>
-                <span></span>
-                <p>{tech.techs.title}</p>
-                <p>{tech.techs.status}</p>
+        <li className={style.conteinerLi}>
+            <div className={style.tec}>
+
+                <span className="title1">{tech.title}</span>
+                <span className="Headline">{tech.status}</span>
+
             </div>
-            <div>
-                <button title="Ediatr" aria-label="edit">
-                    edit
+            <div className={style.buttons}>
+                <button title="Ediatr"
+                    onClick={() => {
+                        setEditingTech(tech)
+                        setisModalEdit(tech)
+                    }}
+                    aria-label="edit">
+                    <VscEdit color="white" />
                 </button>
-                <button title="Deletar" aria-label="edit">
-                    Delete 
+                <button
+                    onClick={() => deleteTech(tech.id)}
+                    title="Deletar"
+                    aria-label="Delete">
+                    <FaTrashAlt color="white" />
                 </button>
-                <Link to="/" title="visualizar nota" aria-label="view">
-                    Visibilly
-                </Link>
             </div>
         </li>
     )

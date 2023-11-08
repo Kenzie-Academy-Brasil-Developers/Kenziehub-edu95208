@@ -97,3 +97,34 @@
     background: var(--Grey-3);
     color: var(--Grey-0);
 }
+
+.btnAdd {
+    width: 32.485px;
+    height: 32px;
+    background-color: var(--Grey-3);
+    border-radius: 4px;
+    color: var(--Grey-0);
+
+}
+
+.btnAddC {
+    display: flex;
+    width: 264px;
+    height: 40px;
+    padding: 0px 22.334px;
+    justify-content: center;
+    align-items: center;
+    gap: 10.152px;
+    border-radius: 4.061px;
+    border: 1.218px solid var(--color-primary);
+    background: var(--color-primary);
+    margin-left: 15px;
+
+    color: #FFF;
+
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    
+}

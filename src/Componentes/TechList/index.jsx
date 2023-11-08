@@ -1,23 +1,28 @@
-import { Link } from "react-router-dom";
 import { Techcontext } from "../../providers/TechContext";
 import { useContext } from "react";
+import { IoAddSharp } from "react-icons/io5";
 import { TechCard } from "./TechCard";
+import style from "./style.module.scss";
+import { useContextIm } from "../../hooks/useContext";
 
 
 export const TechList = () => {
-    const { TecList } = useContext(Techcontext);
+    const { setIsModalVisible } = useContext(Techcontext);
+    const {TecList} = useContextIm();
 
     return (
 
-        <div>
-            <div>
-                <h1>Tecnologias</h1>
-                <Link to="/dashboard">+</Link>
+        <div className={`containerTec ${style.techList}`}>
+            <div className={style.titleTech}>
+                <h1 className="title1">Tecnologias</h1>
+                <button className="btnAdd" onClick={ () =>setIsModalVisible (true)} > <IoAddSharp  size={20}/></button>
             </div>
             <ul>
                {
                      TecList.map((tech) => {
-                        <TechCard key={tech.id} tech={tech}/>
+                        return(
+                            <TechCard key={tech.id} tech={tech}/>
+                        )
                      })
                }
             </ul>
